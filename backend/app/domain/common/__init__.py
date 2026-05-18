@@ -1,0 +1,2 @@
+"""Common domain primitives."""
+
