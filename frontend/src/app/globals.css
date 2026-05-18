@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 24% 98%;
+    --foreground: 220 28% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 28% 12%;
+    --primary: 210 100% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 38% 92%;
+    --secondary-foreground: 176 46% 18%;
+    --muted: 215 20% 94%;
+    --muted-foreground: 218 12% 42%;
+    --accent: 32 96% 92%;
+    --accent-foreground: 28 80% 24%;
+    --destructive: 0 74% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 19% 86%;
+    --input: 216 19% 86%;
+    --ring: 210 100% 38%;
+    --success: 154 65% 34%;
+    --warning: 38 92% 45%;
+    --critical: 350 74% 44%;
+    --azure: 205 100% 39%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 27% 8%;
+    --foreground: 210 27% 92%;
+    --card: 220 24% 12%;
+    --card-foreground: 210 27% 92%;
+    --primary: 203 92% 56%;
+    --primary-foreground: 220 27% 8%;
+    --secondary: 175 31% 18%;
+    --secondary-foreground: 160 45% 86%;
+    --muted: 220 18% 17%;
+    --muted-foreground: 217 12% 66%;
+    --accent: 34 58% 18%;
+    --accent-foreground: 34 95% 84%;
+    --destructive: 0 69% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 219 16% 24%;
+    --input: 219 16% 24%;
+    --ring: 203 92% 56%;
+    --success: 154 55% 45%;
+    --warning: 38 88% 54%;
+    --critical: 350 79% 58%;
+    --azure: 203 92% 56%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .enterprise-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+

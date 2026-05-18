@@ -1,0 +1,2 @@
+"""Azure AI Search adapters."""
+

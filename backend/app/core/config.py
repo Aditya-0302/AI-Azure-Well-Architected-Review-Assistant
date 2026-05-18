@@ -58,17 +58,29 @@ class Settings(BaseSettings):
     rate_limit_requests_per_minute: int = 120
 
     azure_openai_endpoint: str | None = None
+    azure_openai_api_key: SecretStr | None = None
     azure_openai_api_version: str = "2024-10-21"
     azure_openai_chat_deployment: str = "gpt-4o"
     azure_openai_embedding_deployment: str = "text-embedding-3-large"
 
     azure_search_endpoint: str | None = None
+    azure_search_api_key: SecretStr | None = None
     azure_search_index_prefix: str = "waf"
 
     azure_storage_account_url: str | None = None
+    azure_storage_connection_string: SecretStr | None = None
     azure_storage_container_raw: str = "raw"
     azure_storage_container_normalized: str = "normalized"
     azure_storage_container_reports: str = "reports"
+
+    rag_index_name: str = "knowledge"
+    rag_embedding_dimensions: int = 3072
+    rag_chunk_size: int = 1200
+    rag_chunk_overlap: int = 180
+    rag_semantic_configuration_name: str = "waf-semantic-config"
+    rag_vector_profile_name: str = "waf-vector-profile"
+    rag_vector_algorithm_name: str = "waf-hnsw"
+    rag_default_top_k: int = 8
 
     azure_service_bus_fully_qualified_namespace: str | None = None
     service_bus_ingestion_queue: str = "ingestion-jobs"
@@ -112,8 +124,11 @@ class Settings(BaseSettings):
             return f"https://login.microsoftonline.com/{self.auth_tenant_id}/discovery/v2.0/keys"
         return None
 
+    @property
+    def resolved_rag_index_name(self) -> str:
+        return f"{self.azure_search_index_prefix}-{self.rag_index_name}"
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
     return Settings()
-
